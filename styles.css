@@ -1,0 +1,285 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.left-side {
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #ffffff;
+    position: relative;
+    padding-top: 120px;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    transition: all 1s ease-in-out;
+    z-index: 10; /* Ensure the logo is above other content */
+}
+
+.logo img {
+    width: 150px;
+    border-radius: 15px;
+    transition: transform 1s ease-in-out;
+}
+
+.welcome-text {
+    margin-top: 80px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.welcome-text h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.welcome-text p {
+    font-size: 18px;
+    color: #555;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+.input-container {
+    position: relative;
+    width: 250px;
+    margin-bottom: 20px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: padding 0.3s ease, font-size 0.3s ease, border-color 0.3s ease;
+}
+
+.input-container label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #888;
+    transition: top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+    pointer-events: none;
+}
+
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label {
+    top: -15px;
+    font-size: 12px;
+    color: #6495ED;
+}
+
+.input-container input:focus {
+    padding-top: 20px;
+    font-size: 16px;
+    border-color: #6495ED;
+}
+
+/* Hide the default placeholder text */
+.input-container input::placeholder {
+    opacity: 0;
+}
+
+#login-form button {
+    padding: 10px;
+    background-color: #6495ED;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 250px;
+    margin-bottom: 10px;
+}
+
+.remember-me {
+    margin-bottom: 10px;
+}
+
+.forgot-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.forgot-section a {
+    color: #6495ED;
+    text-decoration: none;
+    margin: 5px 0;
+}
+
+.enroll-now {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-align: right;
+}
+
+.enroll-now p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.enroll-now a {
+    display: inline-block;
+    padding: 10px;
+    background-color: transparent;
+    border: 2px solid #6495ED;
+    color: #6495ED;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.enroll-now a:hover {
+    background-color: #6495ED;
+    color: white;
+}
+
+/* Tooltip box */
+.enroll-tooltip {
+    position: absolute;
+    top: 80px; /* Position it just below the button */
+    right: 0;
+    background-color: #080808;
+    color: #ffffff;
+    border: 1px solid #6495ED;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: none; /* Hidden by default */
+    width: 180px; /* Set a width for the tooltip box */
+    text-align: center;
+    z-index: 100;
+}
+
+/* Show the tooltip when hovering over the enroll button */
+.enroll-now:hover .enroll-tooltip {
+    display: block;
+}
+
+
+.right-side {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+}
+
+.zoom-effect {
+    transform: scale(1);
+    transition: transform 2s ease-in-out;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+}
+
+.logged-in .zoom-effect {
+    transform: scale(1);
+}
+
+.right-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+/* Hide the left side after login */
+.logged-in .left-side {
+    display: none;
+}
+
+.logged-in .right-side {
+    width: 100%;
+    padding: 10px;
+}
+
+/* Animation for logo moving to the center, rotating, and moving back */
+@keyframes moveAndRotate {
+    0% {
+        top: 20px;
+        left: 20px;
+        transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+    100% {
+        top: 20px;
+        left: 20px;
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+/* Add this class to trigger the animation */
+.logged-in .logo {
+    animation: moveAndRotate 2s forwards;
+}
+
+/* Footer section */
+.footer {
+    position: absolute;
+    bottom: 20px; /* Space from the bottom */
+    width: 100%; /* Make sure it stretches across the container */
+    text-align: center;
+}
+
+.footer p {
+    font-size: 14px;
+    color: black; /* Black text color */
+}
